@@ -1,8 +1,27 @@
+import {Fragment, useState} from 'react';
+import Cart from './components/Cart/Cart';
+import Header from './components/Layout/Header';
+import Meals from './components/Meals/Meals';
+
 function App() {
+const [modalIsOpen, setModalIsOpen] = useState(false);
+
+const showCartHandler = () =>{
+  setModalIsOpen(true);
+};
+
+const hideCartHandler = () =>{
+  setModalIsOpen(false);
+};
+
   return (
-    <div>
-      <h2>Let's get started!</h2>
-    </div>
+    <Fragment>
+      {modalIsOpen && <Cart onHideCart={hideCartHandler}/>}
+      <Header onShowCart={showCartHandler}/>
+      <main>
+      <Meals />
+      </main>
+    </Fragment>
   );
 }
 
