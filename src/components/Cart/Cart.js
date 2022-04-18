@@ -10,9 +10,13 @@ const Cart = (props) => {
   const totalAmount = `रु ${ctx.totalAmount.toFixed(2)}`;
   const hasItems = ctx.items.length > 0;
 
-  const cartItemRemoveHandler = (id) => {};
+  const cartItemRemoveHandler = (id) => {
+      ctx.removeItem(id);
+  };
 
-  const cartItemAddHandler = (item) => {};
+  const cartItemAddHandler = (item) => {
+      ctx.addItem({...item, amount: 1});
+  };
 
   const cartitems = (
     <ul className={classes["cart-items"]}>
@@ -23,7 +27,7 @@ const Cart = (props) => {
           amount={item.amount}
           price={item.price}
           onRemove={cartItemRemoveHandler.bind(null,item.id)}
-          onAdd={cartItemAddHandler(null,item)}
+          onAdd={cartItemAddHandler.bind(null,item)}
         />
       ))}
     </ul>
